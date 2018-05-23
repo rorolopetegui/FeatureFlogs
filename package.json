@@ -1,5 +1,5 @@
 {
-  "name": "React-Scaffold",
+  "name": "react-scaffold",
   "version": "1.0.0",
   "description": "React Scaffold",
   "main": "index.js",
@@ -11,7 +11,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/rorolopetegui/FeatureFlogs"
   },
   "keywords": [
     "babel",
@@ -19,9 +19,9 @@
     "es2015"
   ],
   "bugs": {
-    "url": ""
+    "url": "https://github.com/rorolopetegui/FeatureFlogs/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/rorolopetegui/FeatureFlogs",
   "devDependencies": {
     "@material-ui/core": "^1.0.0",
     "babel-core": "^6.26.3",
