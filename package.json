@@ -24,6 +24,7 @@
   "homepage": "https://github.com/rorolopetegui/FeatureFlogs",
   "devDependencies": {
     "@material-ui/core": "^1.0.0",
+    "@material-ui/icons": "^1.0.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
@@ -48,6 +49,7 @@
     "vinyl-source-stream": "^1.1.2",
     "watchify": "^3.11.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@material-ui/codemod": "^1.0.0"
+  }
 }
-

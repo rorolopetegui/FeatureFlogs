@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 
-import HelloComponent from '../components/helloComponent';
 
 export default class IndexPage extends Component {
   render() {
     return (
       <div>
-        <HelloComponent />
         
         <div className="cell">
           <article className="article">

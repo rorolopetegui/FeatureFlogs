@@ -16,7 +16,7 @@ const sync = browserSync.create();
 
 // Input file.
 watchify.args.debug = true;
-var bundler = browserify('src/app.js', watchify.args);
+var bundler = browserify('src/index.js', watchify.args);
 
 // Babel transform
 bundler.transform(babelify.configure({
