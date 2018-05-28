@@ -10,10 +10,9 @@ export default class App extends Component {
     return (
       <Fragment>
         <Fragment>
-          <Header />
-        </Fragment>
-        <Fragment>
-          <HelloComponent />
+          <Header>
+            <HelloComponent />
+          </Header>
         </Fragment>
         <Divider />
         <Fragment>

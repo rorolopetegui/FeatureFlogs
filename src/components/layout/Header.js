@@ -4,7 +4,9 @@ import AppBar from './AppBar';
 export default class Header extends Component {
     render() {
         return (
-            <AppBar />
+            <AppBar>
+                {this.props.children}
+            </AppBar>
         )
     }
 }

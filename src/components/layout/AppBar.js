@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
-import { AppBar, Toolbar, Typography, Divider } from '@material-ui/core';
-import { Drawer, List, IconButton, ChevronRightIcon, MenuIcon } from '@material-ui/core';
-import { mailFolderListItems, otherMailFolderListItems } from './tileData';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import { mailFolderListItems, otherMailFolderListItems } from './navigationData';
+
+
 const drawerWidth = 240;
+
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -32,9 +44,6 @@ const styles = theme => ({
     },
     'appBarShift-left': {
         marginLeft: drawerWidth,
-    },
-    'appBarShift-right': {
-        marginRight: drawerWidth,
     },
     menuButton: {
         marginLeft: 12,
@@ -65,9 +74,6 @@ const styles = theme => ({
     'content-left': {
         marginLeft: -drawerWidth,
     },
-    'content-right': {
-        marginRight: -drawerWidth,
-    },
     contentShift: {
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.easeOut,
@@ -80,24 +86,29 @@ const styles = theme => ({
     'contentShift-right': {
         marginRight: 0,
     },
+    toolbar: theme.mixins.toolbar,
 });
 
-export default class MyAppBar extends Component {
-    constructor() {
-        super();
+
+class MyAppBar extends Component {
+    constructor(props) {
+        super(props);
         this.state = {
             open: false,
             anchor: 'left',
         };
+        this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
+        this.handleDrawerClose = this.handleDrawerClose.bind(this);
     }
-    handleDrawerOpen(){
+    handleDrawerOpen() {
         this.setState({ open: true });
     };
 
-    handleDrawerClose(){
+    handleDrawerClose() {
         this.setState({ open: false });
     };
     render() {
+        const { classes } = this.props;
         const { anchor, open } = this.state;
 
         const drawer = (
@@ -106,12 +117,12 @@ export default class MyAppBar extends Component {
                 anchor={anchor}
                 open={open}
                 classes={{
-                    paper: styles.drawerPaper,
+                    paper: classes.drawerPaper,
                 }}
             >
-                <div className={styles.drawerHeader}>
+                <div className={classes.drawerHeader}>
                     <IconButton onClick={this.handleDrawerClose}>
-                        <ChevronRightIcon />
+                        <ChevronLeftIcon />
                     </IconButton>
                 </div>
                 <Divider />
@@ -121,13 +132,14 @@ export default class MyAppBar extends Component {
             </Drawer>
         );
 
+
         return (
-            <div className={styles.root}>
-                <div className={styles.appFrame}>
+            <div className={classes.root}>
+                <div className={classes.appFrame}>
                     <AppBar
-                        className={classNames(styles.appBar, {
-                            [styles.appBarShift]: open,
-                            [styles[`appBarShift-${anchor}`]]: open,
+                        className={classNames(classes.appBar, {
+                            [classes.appBarShift]: open,
+                            [classes[`appBarShift-left`]]: open,
                         })}
                     >
                         <Toolbar disableGutters={!open}>
@@ -135,18 +147,33 @@ export default class MyAppBar extends Component {
                                 color="inherit"
                                 aria-label="open drawer"
                                 onClick={this.handleDrawerOpen}
-                                className={classNames(styles.menuButton, open && styles.hide)}
+                                className={classNames(classes.menuButton, open && classes.hide)}
                             >
                                 <MenuIcon />
                             </IconButton>
                             <Typography variant="title" color="inherit" noWrap>
-                                Persistent drawer
+                                Future Flags
                             </Typography>
                         </Toolbar>
                     </AppBar>
                     {drawer}
+                    <main className={classNames(classes.content, classes[`content-${anchor}`], {
+                            [classes.contentShift]: open,
+                            [classes[`contentShift-${anchor}`]]: open,
+                        })}
+                    >
+                        <div className={classNames(classes.drawerHeader, classes.toolbar)} />
+                        {this.props.children}                        
+                    </main>
                 </div>
-            </div>
+
+            </div >
         );
     }
 }
+MyAppBar.propTypes = {
+    classes: PropTypes.object.isRequired,
+    theme: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles, { withTheme: true })(MyAppBar);
