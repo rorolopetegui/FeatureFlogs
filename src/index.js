@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter as Router } from 'react-router-dom';
+import { browserHistory } from 'react-router';
 import jQuery from 'jquery';
 import App from './components/app';
 
 const app = (
-  <App />
+  <Router history={browserHistory}>
+    <App />
+  </Router>
 )
 
 jQuery(function () {
