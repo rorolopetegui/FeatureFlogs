@@ -11,7 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { mailFolderListItems, otherMailFolderListItems } from './navigationData';
+import { mailFolderListItems } from './navigationData';
 
 
 const drawerWidth = 240;
@@ -99,6 +99,7 @@ class MyAppBar extends Component {
         };
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
         this.handleDrawerClose = this.handleDrawerClose.bind(this);
+        //this.handleChange = this.handleChange.bind(this);
     }
     handleDrawerOpen() {
         this.setState({ open: true });
@@ -107,6 +108,9 @@ class MyAppBar extends Component {
     handleDrawerClose() {
         this.setState({ open: false });
     };
+    /*handleChange(event, value){
+        console.log("click en: " + event);
+    }*/
     render() {
         const { classes } = this.props;
         const { anchor, open } = this.state;
@@ -126,9 +130,7 @@ class MyAppBar extends Component {
                     </IconButton>
                 </div>
                 <Divider />
-                <List>{mailFolderListItems}</List>
-                <Divider />
-                <List>{otherMailFolderListItems}</List>
+                <List /*onClick={this.handleChange}*/>{mailFolderListItems}</List>
             </Drawer>
         );
 

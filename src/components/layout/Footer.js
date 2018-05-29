@@ -5,10 +5,19 @@ import { withRouter } from "react-router-dom";
 import { Paper, Tabs, Tab, Typography } from '@material-ui/core';
 
 class Footer extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        let varValue = 0;
+        switch(this.props.location.pathname){
+            case "/MySpace":
+                varValue = 1;
+            break;
+            case "/Contact":
+                varValue = 2;
+            break;
+        }
         this.state = {
-            value: 0,
+            value: varValue,
         };
         this.handleChange = this.handleChange.bind(this);
     }
