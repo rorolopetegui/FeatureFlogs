@@ -16,9 +16,9 @@ export default class Footer extends Component {
                     onChange={this.props.handlePageUpdate}
                     centered
                 >
-                    <Tab label="Componente Uno" />
-                    <Tab label="Componente Dos" />
-                    <Tab label="Componente Tres" />
+                    <Tab label="Home" />
+                    <Tab label="Flags" />
+                    <Tab label="Users" />
                 </Tabs>
                 <Typography variant="caption" gutterBottom align="center">
                     @FutureFlags Team

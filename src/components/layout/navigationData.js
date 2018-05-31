@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import StarIcon from '@material-ui/icons/Star';
-import SendIcon from '@material-ui/icons/Send';
+import Home from '@material-ui/icons/Home';
+import Flag from '@material-ui/icons/Flag';
+import People from '@material-ui/icons/People';
 import { Link } from 'react-router-dom';
 
 export default class NavigationData extends Component {
@@ -14,27 +13,21 @@ export default class NavigationData extends Component {
       <div>
         <ListItem button component={Link} to='/Home'>
           <ListItemIcon>
-            <InboxIcon />
+            <Home />
           </ListItemIcon>
-          <ListItemText primary="Inbox" />
+          <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button component={Link} to='/MySpace'>
+        <ListItem button component={Link} to='/Flags'>
           <ListItemIcon>
-            <StarIcon />
+            <Flag />
           </ListItemIcon>
-          <ListItemText primary="Starred" />
+          <ListItemText primary="Feature Flags" />
         </ListItem>
-        <ListItem button component={Link} to='/Contact'>
+        <ListItem button component={Link} to='/Users'>
           <ListItemIcon>
-            <SendIcon />
+            <People />
           </ListItemIcon>
-          <ListItemText primary="Send mail" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Drafts" />
+          <ListItemText primary="Users" />
         </ListItem>
       </div>
     )
