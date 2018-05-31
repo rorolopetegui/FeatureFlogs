@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { HashRouter as Router, Switch, Route, withRouter } from 'react-router-dom';
-import { browserHistory } from 'react-router';
+import { Switch, Route, withRouter } from 'react-router-dom';
+
 import Divider from '@material-ui/core/Divider';
 
 import { Header, Footer } from './layout';
@@ -29,8 +29,14 @@ class App extends Component {
     };
     this.handlePageUpdate = this.handlePageUpdate.bind(this);
   }
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.handlePageUpdate(null, null);
+    }
+  }
+
   handlePageUpdate(event, value) {
-    if (value !== undefined) {
+    if (value !== undefined && value !== null) {
       let myRedirectValue;
       switch (value) {
         case 0:
@@ -43,13 +49,35 @@ class App extends Component {
           myRedirectValue = "/Contact";
           break;
       }
-      this.setState({
-        selectedPage: value
-      });
       if (this.props.location.pathname !== myRedirectValue)
         this.props.history.push(myRedirectValue);
+      return;
     }
+    switch (this.props.location.pathname) {
+      case "/Home":
+        value = 0;
+        break;
+      case "/MySpace":
+        value = 1;
+        break;
+      case "/Contact":
+        value = 2;
+        break;
+    }
+    this.setState({
+      selectedPage: value
+    });
   }
+  /*shouldComponentUpdate(nextProps){
+    if(this.nextProps !== nextProps)
+    {
+      this.setState({
+        selectedPage: nextProps.selectedPage,
+      });
+      return true;
+    }
+    return false;
+  }*/
   render() {
     const main = (
       <main>
@@ -62,21 +90,19 @@ class App extends Component {
       </main>
     );
     return (
-      <Router history={browserHistory}>
+      <Fragment>
         <Fragment>
-          <Fragment>
-            <Header handlePageUpdate={this.handlePageUpdate}>
-              {main}
-            </Header>
-          </Fragment>
-          <Divider />
-          <Fragment>
-            <Footer handlePageUpdate={this.handlePageUpdate} selectedPage={this.state.selectedPage}>
-              {main}
-            </Footer>
-          </Fragment>
+          <Header handlePageUpdate={this.handlePageUpdate}>
+            {main}
+          </Header>
         </Fragment>
-      </Router>
+        <Divider />
+        <Fragment>
+          <Footer handlePageUpdate={this.handlePageUpdate} selectedPage={this.state.selectedPage}>
+            {main}
+          </Footer>
+        </Fragment>
+      </Fragment>
     )
   }
 }
