@@ -8,8 +8,8 @@ const styles = ({
 });
 export default class ComponentOne extends Component {
   render() {
-    return(
-          <h1 className={styles.content}>Component 1</h1>
+    return (
+      <h1 className={styles.content}>Component 1</h1>
     );
   }
 }

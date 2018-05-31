@@ -1,46 +1,11 @@
 import React, { Component } from 'react';
-import { withRouter } from "react-router-dom";
 
 
 import { Paper, Tabs, Tab, Typography } from '@material-ui/core';
 
-class Footer extends Component {
-    constructor(props) {
-        super(props);
-        let varValue = 0;
-        switch(this.props.location.pathname){
-            case "/MySpace":
-                varValue = 1;
-            break;
-            case "/Contact":
-                varValue = 2;
-            break;
-        }
-        this.state = {
-            value: varValue,
-        };
-        this.handleChange = this.handleChange.bind(this);
-    }
-    handleChange(event, value) {
-        if (value !== undefined) {
-            this.setState({ value });
-            let myRedirectValue;
-            switch (value) {
-                case 0:
-                    myRedirectValue = "/Home";
-                    break;
-                case 1:
-                    myRedirectValue = "/MySpace";
-                    break;
-                case 2:
-                    myRedirectValue = "/Contact";
-                    break;
-            }
-            this.props.history.push(myRedirectValue);
-        }
-    };
+export default class Footer extends Component {
     render() {
-        const { value } = this.state;
+        const value = this.props.selectedPage;
 
         return (
             <Paper>
@@ -48,7 +13,7 @@ class Footer extends Component {
                     value={value}
                     indicatorColor="primary"
                     textColor="primary"
-                    onChange={this.handleChange}
+                    onChange={this.props.handlePageUpdate}
                     centered
                 >
                     <Tab label="Componente Uno" />
@@ -62,4 +27,3 @@ class Footer extends Component {
         )
     }
 }
-export default withRouter(Footer);
