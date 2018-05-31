@@ -5,9 +5,9 @@ import Divider from '@material-ui/core/Divider';
 
 import { Header, Footer } from './layout';
 
-import ComponentOne from './ComponentOne';
-import ComponentTwo from './ComponentTwo';
-import ComponentThree from './ComponentThree';
+import HomePage from './pages/HomePage';
+import FlagsPage from './pages/FlagsPage';
+import UsersPage from './pages/UsersPage';
 
 class App extends Component {
   constructor(props) {
@@ -69,10 +69,10 @@ class App extends Component {
     const main = (
       <main>
         <Switch>
-          <Route exact path='/' component={ComponentOne} />
-          <Route path='/Home' component={ComponentOne} />
-          <Route path='/Flags' component={ComponentTwo} />
-          <Route path='/Users' component={ComponentThree} />
+          <Route exact path='/' component={HomePage} />
+          <Route path='/Home' component={HomePage} />
+          <Route path='/Flags' component={FlagsPage} />
+          <Route path='/Users' component={UsersPage} />
         </Switch>
       </main>
     );

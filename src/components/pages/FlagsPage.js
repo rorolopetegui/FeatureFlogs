@@ -6,10 +6,10 @@ const styles = ({
     textAlign: 'center'
   },
 });
-export default class ComponentTwo extends Component {
+export default class ComponentThree extends Component {
   render() {
     return(
-          <h1 className={styles.content}>Component 2</h1>
+          <h1 className={styles.content}>Here goes the flags Page</h1>
     );
   }
 }
