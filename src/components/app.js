@@ -4,6 +4,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 
 import { Header, Footer } from './layout';
+import Pages from './Data/Pages';
 
 import HomePage from './pages/HomePage';
 import FlagsPage from './pages/FlagsPage';
@@ -11,14 +12,18 @@ import UsersPage from './pages/UsersPage';
 
 class App extends Component {
   constructor(props) {
+  
     super(props);
     let varValue = 0;
+    console.log(this.props.location.pathname);
     switch (this.props.location.pathname) {
-      case "/Flags":
-        varValue = 1;
+      case Pages.FlagsUrl:
+        varValue = Pages.FlagsIndex;
+        console.log("FlagsUrl");
         break;
-      case "/Users":
-        varValue = 2;
+      case Pages.UsersUrl:
+        varValue = Pages.UsersIndex;
+        console.log("UsersIndex");
         break;
     }
     this.state = {
@@ -36,14 +41,17 @@ class App extends Component {
     if (value !== undefined && value !== null) {
       let myRedirectValue;
       switch (value) {
-        case 0:
-          myRedirectValue = "/Home";
+        case Pages.HomeIndex:
+        console.log("VALUE" + value);
+          myRedirectValue = Pages.HomeUrl;
           break;
-        case 1:
-          myRedirectValue = "/Flags";
+        case Pages.FlagsIndex:
+        console.log("VALUE" + value);
+          myRedirectValue = Pages.FlagsUrl;
           break;
-        case 2:
-          myRedirectValue = "/Users";
+        case Pages.UsersIndex:
+        console.log("VALUE" + value);
+          myRedirectValue = Pages.UsersUrl;
           break;
       }
       if (this.props.location.pathname !== myRedirectValue)
@@ -51,16 +59,20 @@ class App extends Component {
       return;
     }
     switch (this.props.location.pathname) {
-      case "/Home":
-        value = 0;
+      case Pages.HomeUrl:
+        value = Pages.HomeIndex;
+        console.log("HomeUrl: " + value);
         break;
-      case "/Flags":
-        value = 1;
+      case Pages.FlagsUrl:
+        value = Pages.FlagsIndex;
+        console.log("FlagsUrl: " + value);
         break;
-      case "/Users":
-        value = 2;
+      case Pages.UsersUrl:
+        value = Pages.UsersIndex;
+        console.log("UsersUrl: " + value);
         break;
     }
+    console.log("value: " + value);
     this.setState({
       selectedPage: value
     });
@@ -70,9 +82,9 @@ class App extends Component {
       <main>
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route path='/Home' component={HomePage} />
-          <Route path='/Flags' component={FlagsPage} />
-          <Route path='/Users' component={UsersPage} />
+          <Route path={Pages.HomeUrl} component={HomePage} />
+          <Route path={Pages.FlagsUrl} component={FlagsPage} />
+          <Route path={Pages.UsersUrl} component={UsersPage} />
         </Switch>
       </main>
     );
