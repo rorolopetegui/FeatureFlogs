@@ -4,7 +4,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 
 import { Header, Footer } from './layout';
-import Pages from './Data/Pages';
+import * as Pages from './Data/Pages';
 
 import HomePage from './pages/HomePage';
 import FlagsPage from './pages/FlagsPage';
